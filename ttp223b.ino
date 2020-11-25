@@ -25,7 +25,7 @@ void loop() {
   // Example of handling events from button.
   switch (ttp.getEvent()) {
     case Ttp223b::EVENT_SHORT_CLICK:
-      Serial.println("click");
+      Serial.println("short");
       break;
     case Ttp223b::EVENT_DOUBLE_CLICK:
       Serial.println("double");
