@@ -11,9 +11,10 @@ class Ttp223b {
   private:
     byte pin;
     
-    byte short_click_event_interval;
-    byte double_click_event_interval;
-    byte long_click_event_interval;
+    unsigned int short_click_event_interval;
+    unsigned int double_click_event_interval;
+    unsigned int long_click_event_interval;
+    unsigned int rattle;
     
     long last_press = 0;
     long last_release = 0;
@@ -34,7 +35,7 @@ class Ttp223b {
     static const char EVENT_IDLE = 'i';
   
     // Setup pin and call init()
-    Ttp223b(byte pin, byte short_click_event_interval, byte double_click_event_interval, byte long_click_event_interval);
+    Ttp223b(byte pin, unsigned int short_click_event_interval, unsigned int double_click_event_interval, unsigned int long_click_event_interval, unsigned int rattle);
     // Setup the button pin as INPUT
     void init();
     // Process click events
