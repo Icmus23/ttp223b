@@ -1,6 +1,6 @@
-#include "ttp223b.h"
+#include <ButtonHandler.h>
 
-Ttp223b::Ttp223b(byte pin, unsigned int short_click_event_interval, unsigned int double_click_event_interval, unsigned int long_click_event_interval, unsigned int rattle) {
+ButtonHandler::ButtonHandler(byte pin, unsigned int short_click_event_interval, unsigned int double_click_event_interval, unsigned int long_click_event_interval, unsigned int rattle) {
   this->pin = pin;
   this->short_click_event_interval = short_click_event_interval;
   this->double_click_event_interval = double_click_event_interval;
@@ -9,11 +9,11 @@ Ttp223b::Ttp223b(byte pin, unsigned int short_click_event_interval, unsigned int
   init();
 }
 
-void Ttp223b::init() {
+void ButtonHandler::init() {
   pinMode(pin, INPUT);
 }
 
-void Ttp223b::processEvents() {
+void ButtonHandler::processEvents() {
   // If the btn is clicked.
   if (digitalRead(pin) == HIGH) {
     // If btn previous state was released and we clicked it - remember this timestamp as last_press
@@ -52,20 +52,20 @@ void Ttp223b::processEvents() {
   }
 
   if (was_click && was_double_click) {
-    btn_event = Ttp223b::EVENT_DOUBLE_CLICK;
+    btn_event = ButtonHandler::EVENT_DOUBLE_CLICK;
     was_click = false;
     was_double_click = false;
   } else if (was_click && millis() - last_release > double_click_event_interval) {
-    btn_event = Ttp223b::EVENT_SHORT_CLICK;
+    btn_event = ButtonHandler::EVENT_SHORT_CLICK;
     was_click = false;
   } else if (was_long_click) {
-    btn_event = Ttp223b::EVENT_LONG_CLICK;
+    btn_event = ButtonHandler::EVENT_LONG_CLICK;
     was_long_click = false;
   } else {
-    btn_event = Ttp223b::EVENT_IDLE;
+    btn_event = ButtonHandler::EVENT_IDLE;
   }
 }
 
-char Ttp223b::getEvent() {
+char ButtonHandler::getEvent() {
   return btn_event;
 }

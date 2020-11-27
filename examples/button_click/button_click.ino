@@ -1,4 +1,4 @@
-#include "ttp223b.h"
+#include <ButtonHandler.h>
 
 #define BTNPIN 3
 
@@ -7,7 +7,7 @@
 #define LONG_CLICK_EVENT_INTERVAL 500
 #define RATTLE_VALUE 200
 
-Ttp223b ttp(
+ButtonHandler b_handler(
   BTNPIN,
   SHORT_CLICK_EVENT_INTERVAL,
   DOUBLE_CLICK_EVENT_INTERVAL,
@@ -21,18 +21,18 @@ void setup() {
 }
 
 void loop() {
-  // Call this function in loop to make Ttp223b class process button events.
-  ttp.processEvents();
+  // Call this function in loop to make ButtonHandler class process button events.
+  b_handler.processEvents();
 
   // Example of handling events from button.
-  switch (ttp.getEvent()) {
-    case Ttp223b::EVENT_SHORT_CLICK:
+  switch (b_handler.getEvent()) {
+    case ButtonHandler::EVENT_SHORT_CLICK:
       Serial.println("short");
       break;
-    case Ttp223b::EVENT_DOUBLE_CLICK:
+    case ButtonHandler::EVENT_DOUBLE_CLICK:
       Serial.println("double");
       break;
-    case Ttp223b::EVENT_LONG_CLICK:
+    case ButtonHandler::EVENT_LONG_CLICK:
       Serial.println("long");
       break;
   }
