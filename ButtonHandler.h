@@ -1,4 +1,3 @@
-// Button click events handler lib.
 #ifndef BUTTON_HANDLER_H
 #define BUTTON_HANDLER_H
 
